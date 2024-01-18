@@ -1,5 +1,4 @@
 class Api::V1::ServicesController < ApplicationController
-
   # user authorization
   # service/
   def index
@@ -19,7 +18,7 @@ class Api::V1::ServicesController < ApplicationController
     if @service.save
       render json: { service: @service }
     else
-      render json: { error: "Service was not created." }
+      render json: { error: 'Service was not created.' }
     end
   end
 
@@ -29,7 +28,7 @@ class Api::V1::ServicesController < ApplicationController
     if @service.destroy
       render json: { service: @service }
     else
-      render json: { error: "Service was not deleted." }
+      render json: { error: 'Service was not deleted.' }
     end
   end
 
