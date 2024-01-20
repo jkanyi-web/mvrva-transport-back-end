@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/member_details' => 'members#index'
+
   get "up" => "rails/health#show", as: :rails_health_check
 
 end
