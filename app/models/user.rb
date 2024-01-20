@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
-  def self.revoke_jwt(payload, user)
+  def self.revoke_jwt(_payload, user)
     user.update(jti: SecureRandom.uuid)
   end
 end
