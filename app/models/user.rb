@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   has_many :services
 
-  ROLES = %w{admin user}
+  ROLES = %w[admin user].freeze
   after_initialize :set_default_role, if: :new_record?
 
   ROLES.each do |role_name|
