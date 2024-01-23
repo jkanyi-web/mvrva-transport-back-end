@@ -1,9 +1,10 @@
 class Api::V1::ReservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[create destroy]
   before_action :set_reservation, only: %i[show destroy]
+  load_and_authorize_resource
 
   def index
-    @reservations = current_user.reservations
+    @reservations = current_user&.reservations
     render json: @reservations, status: :ok
   end
 
