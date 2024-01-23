@@ -1,4 +1,4 @@
-class Api::V1::ServicesController < ApiController
+class Api::V1::ServicesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[create destroy]
   # user authorization
   # service/
@@ -15,7 +15,7 @@ class Api::V1::ServicesController < ApiController
   # POST /service
   # admin authorization
   def create
-    @service = Service.new(service_params)
+    @service = current_user.services.new(service_params)
     if @service.save
       render json: { service: @service }
     else
@@ -25,9 +25,9 @@ class Api::V1::ServicesController < ApiController
 
   # admin authorization
   def destroy
-    @service = Service.find_by_id(params[:id])
+    @service = current_user.services.find_by_id(params[:id])
     if @service.destroy
-      render json: { service: @service }
+      render json: { data: 'Service was removed successfully', status: 'success' }, status: :ok
     else
       render json: { error: 'Service was not deleted.' }
     end

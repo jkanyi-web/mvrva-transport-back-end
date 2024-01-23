@@ -1,5 +1,6 @@
-class Api::V1::ReservationsController < ApiController
-  before_action :set_reservation, only: [:show]
+class Api::V1::ReservationsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: %i[create destroy]
+  before_action :set_reservation, only: %i[show destroy]
 
   def index
     @reservations = current_user.reservations
@@ -14,15 +15,15 @@ class Api::V1::ReservationsController < ApiController
     @reservation = current_user.reservations.new(reservation_params)
 
     if @reservation.save
-      redner json: @reservation, status: :ok
+      render json: @reservation, status: :ok
     else
-      render json: { data: @company.errors.full_messages, status: 'failed' }, status: :unprocessable_entity
+      render json: { data: @reservation.errors.full_messages, status: 'failed' }, status: :unprocessable_entity
     end
   end
 
   def destroy
     if @reservation.destroy
-      render json: { data: 'Reservation removed successfully', status: 'success' }, status: :ok
+      render json: { data: 'Reservation was removed successfully', status: 'success' }, status: :ok
     else
       render json: { data: 'Something went wrong, reservation is not canceled', status: 'failed' }
     end
@@ -37,6 +38,7 @@ class Api::V1::ReservationsController < ApiController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:pickup_address, :drop_address, :description, :contact, :pickup_date)
+    params.require(:reservation).permit(:pickup_address, :drop_address, :description, :contact, :pickup_date,
+                                        :service_id)
   end
 end
