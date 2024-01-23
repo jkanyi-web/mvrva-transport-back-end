@@ -79,3 +79,5 @@ gem 'rack-cors'
 gem 'dry-configurable', '0.11.5'
 
 gem 'dry-container', '0.8.0'
+
+gem 'cancancan'
