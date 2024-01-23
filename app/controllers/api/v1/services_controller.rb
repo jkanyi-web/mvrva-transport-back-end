@@ -1,4 +1,4 @@
-class Api::V1::ServicesController < ApplicationController
+class Api::V1::ServicesController < ApiController
   skip_before_action :verify_authenticity_token, only: %i[create destroy]
   # user authorization
   # service/
