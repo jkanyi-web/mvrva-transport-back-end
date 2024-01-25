@@ -18,16 +18,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def respond_with(resource, _options = {})
-    if resource.persisted?
-      token = JWT.encode(resource.jwt_payload, Rails.application.credentials.fetch(:secret_key_base))
+  if resource.persisted?
+    @token = request.env['warden-jwt_auth.token']
+    headers['Authorization'] = @token
 
-      render json: {
-        status: { code: 200, message: 'Signed up sucessfully.', data: resource, token: token }
-      }, status: :ok
-    else
-      render json: {
-        status: { message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}" }
-      }, status: :unprocessable_entity
-    end
+    render json: {
+      status: { code: 200, message: 'Signed up successfully.', data: resource },
+      user: resource, Authorization: @token
+    }, status: :ok
+  else
+    render json: {
+      status: { message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}" }
+    }, status: :unprocessable_entity
   end
+end
 end
