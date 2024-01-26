@@ -10,7 +10,7 @@ class Ability
       can :read, :all
       can %i[destroy create], Reservation, user_id: @user.id
     else
-      can %i[index show], Service
+      can :read, %i[index show], Service
     end
   end
 end
