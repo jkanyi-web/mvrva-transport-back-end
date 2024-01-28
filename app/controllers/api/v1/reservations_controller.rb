@@ -40,6 +40,6 @@ class Api::V1::ReservationsController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(:pickup_address, :drop_address, :description, :contact, :pickup_date,
-                                        :service_id)
+                                        :service_id, :client_name)
   end
 end

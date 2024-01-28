@@ -2,7 +2,7 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :service
 
-  validates :pickup_address, :drop_address, :description, :contact, :pickup_date, presence: true
+  validates :pickup_address, :drop_address, :description, :contact, :pickup_date, :client_name, presence: true
   validate :pickup_date_cannot_be_in_the_past
 
   private
