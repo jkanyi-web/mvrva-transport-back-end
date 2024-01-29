@@ -1,20 +1,15 @@
 class Api::V1::ServicesController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[create destroy]
   load_and_authorize_resource
-  # user authorization
-  # service/
+  before_action :authenticate_user!, except: %i[index show]
+
   def index
     render json: { services: Service.all }
   end
 
-  # user authorization
-  # service/:id
   def show
     render json: { service: Service.find_by_id(params[:id]) }
   end
 
-  # POST /service
-  # admin authorization
   def create
     @service = current_user.services.new(service_params)
     if @service.save
@@ -24,7 +19,6 @@ class Api::V1::ServicesController < ApplicationController
     end
   end
 
-  # admin authorization
   def destroy
     @service = Service.find_by_id(params[:id])
     if @service.destroy
