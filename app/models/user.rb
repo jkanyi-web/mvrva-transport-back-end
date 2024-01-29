@@ -6,18 +6,14 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   has_many :services
+  has_many :reservations
 
   ROLES = %w[admin user].freeze
-  after_initialize :set_default_role, if: :new_record?
 
   ROLES.each do |role_name|
     define_method "#{role_name}?" do
       role == role_name
     end
-  end
-
-  def set_default_role
-    self.role ||= 'user'
   end
 
   def self.revoke_jwt(_payload, user)
