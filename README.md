@@ -93,7 +93,6 @@ In order to run this project you need:
 - Ruby 3.3.0
 - Browser (Google Chrome, Mozilla Firefox, Safari or any other browser)
 - Run `Rails Server`
-- Then run `npm start`
 
 ### Setup
 
@@ -117,7 +116,7 @@ Git Bash Commands
 - rails db:create
 - rails db:migrate
 
-Make sure that server is running
+Make sure that server is running =
 rails s
 
 ### Usage
@@ -126,29 +125,29 @@ Use this project in the browsers of desktops and mobile devices
 
 ### API Documentation
 
-`New User Registration` user_registration  POST   /users(.:format)
+`New User Registration` user_registration  POST   http://127.0.0.1:4000/users/
 
-`New User Session`  GET /users/sign_in
+`New User Session`  GET http://127.0.0.1:4000/users/sign_in     
 
-`Logout User` DELETE      /users/sign_out(.:format)            users/sessions#destroy
+`Logout User` DELETE      http://127.0.0.1:4000/users/sign_out  
 
 `API Services` 
-- GET    /api/v1/services(.:format) api/v1/services#index
-- POST   /api/v1/services(.:format) api/v1/services#create
+- `Get all service list` GET    http://127.0.0.1:4000/api/v1/services   
+- `Create a new service` POST   http://127.0.0.1:4000/api/v1/services  
 
 `API Individual Service`
- - GET    /api/v1/services/:id(.:format)           api/v1/services#show
--  DELETE /api/v1/services/:id(.:format)                                                                    api/v1/services#destroy
+- `Get specific service through id` GET    http://127.0.0.1:4000/api/v1/services/:id    
+- `Delete specific service through id` DELETE http://127.0.0.1:4000/api/v1/services/:id  
 
 `API Reservations` 
-- GET    /api/v1/reservations(.:format)                                                                    api/v1/reservations#index
--   POST   /api/v1/reservations(.:format)                                                                    api/v1/reservations#create
+- `Get all reservation list` GET    http://127.0.0.1:4000/api/v1/reservations    
+- `Create a new reservation` POST   http://127.0.0.1:4000/api/v1/reservations   
 
 `API Individual Reservation`
-- GET    /api/v1/reservations/:id(.:format)                                                                api/v1/reservations#show
-- DELETE /api/v1/reservations/:id(.:format)                                                                api/v1/reservations#destroy
+- `Get specific reservation through id` GET    http://127.0.0.1:4000/api/v1/reservations/:id    
+- `Delete specific reservation through id` DELETE http://127.0.0.1:4000/api/v1/reservations/:id     
 
-
+[**Note:** some browser do not support (http://127.0.0.1:4000), in that case you should use (http://localhost:4000)]
 
 
 ## 👥 Authors <a name="authors"></a>
