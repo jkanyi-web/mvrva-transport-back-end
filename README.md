@@ -108,8 +108,10 @@ cd mvrva-transport-back-end
 Install this project with:
 bundle install
 
-Create new master key and credential:
+Delete the credentials.yml.enc and master.key(if present) file
+Create new master key and credential.yml.enc file by running the following command in the terminal:
 Git Bash command: `EDITOR="code --wait", rails credentials:edit`
+Save and close the credentials.yml.enc file and the master.key file will be created automatically.
 
 Create Database:
 Git Bash Commands
